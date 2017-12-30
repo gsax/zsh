@@ -115,6 +115,7 @@ alias GoInstall='
 	go get github.com/zserge/zs \
 	github.com/junegunn/fzf \
 	github.com/oem/lnch \
+	github.com/FooSoft/homemaker \
 	github.com/opennota/findimagedupes'
 
 # show all packages installed in the users home
@@ -125,4 +126,5 @@ alias GoUpdate='
 	go get -u github.com/zserge/zs \
 	github.com/junegunn/fzf \
 	github.com/oem/lnch \
+	github.com/FooSoft/homemaker \
 	github.com/opennota/findimagedupes'
