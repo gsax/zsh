@@ -4,14 +4,17 @@
 # autocompletion
 [[ $- == *i* ]] && source "/home/chaisen/.go/src/github.com/junegunn/fzf/shell/completion.zsh" 2> /dev/null
 # key-bindings
+[ -s "/home/chaisen/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh" ] &&
 source "/home/chaisen/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh"
 # use rg instead of find
+[[ -x `which rg` ]] &&
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --follow -g ""'
 
 # load nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # stack autocompletion
+[[ -x `which stack` ]] &&
 eval "$(stack --bash-completion-script stack)"
 
 # Aliases
