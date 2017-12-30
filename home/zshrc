@@ -1,0 +1,125 @@
+# Source the Environment
+
+# fzf settings
+# autocompletion
+[[ $- == *i* ]] && source "/home/chaisen/.go/src/github.com/junegunn/fzf/shell/completion.zsh" 2> /dev/null
+# key-bindings
+source "/home/chaisen/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh"
+# use rg instead of find
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --follow -g ""'
+
+# load nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# stack autocompletion
+eval "$(stack --bash-completion-script stack)"
+
+# Aliases
+
+# go quick to private wiki
+alias wiki='w3m http://pc.protaisn:5001/'
+alias wiki-graphic='/usr/bin/firefox -P chaisen http://pc.protaisn:5001/'
+
+# a test http server on localhost
+alias httpd='/usr/bin/gatling -F -T 23 -P 2M -d -V -i 127.0.0.1 -p 8080'
+
+# use always underscores instead of spaces with youtube-dl
+alias youtube-dl='youtube-dl --restrict-filenames'
+
+# don't store su in history
+alias su=' su'
+
+# use etckeeper for the homedir
+alias homekeeper='etckeeper commit -d /home/chaisen/'
+
+# aliases for translation with leo
+alias dict='surfraw leodict'
+
+# mosh connections to my uberspace webspaces
+alias uber-gsax='mosh -p 62828 uber-gsax'
+alias uber-protaisn='mosh -p 61106 uber-protaisn'
+alias uber-straemme='mosh -p 63105 uber-straemme'
+
+# ls aliases
+alias la='ls -a'
+alias ll='ls -lg'
+alias llx='ll -@'
+alias lla='ll -a'
+alias llax='llx -@'
+alias llb='ll -b'
+alias llbx='lb -@'
+alias llba='lb -a'
+alias llbax='lba -@'
+alias llB='ll -B'
+alias llBx='lB -@'
+alias llBa='lB -a'
+alias llBax='lBa -@'
+alias lt='ls -T'
+alias ltx='lt -@'
+alias lta='lt -a'
+alias ltax='lta -@'
+
+# find aliases
+alias Ff='find . -iname'
+alias Fc='find . -type f | wc -l'
+alias Fl='find -L . -type l'
+
+
+##########
+# PYTHON #
+##########
+
+# install required packages
+alias PipInstall='pip install khal khard pylama vdirsyncer --user'
+
+# show outdated packages
+alias PipListOutdated='pip list --outdated --format=freeze --user | xargs -n1'
+
+# update all manually installed packages
+alias PipUpdate='pip list --outdated --format=freeze --user | cut -d = -f 1 | xargs -n1 pip install -U --user'
+
+
+########
+# RUST #
+########
+
+# install required packages
+alias CargoInstall='
+	cargo install tokei &&
+	cargo install exa &&
+	cargo install ripgrep &&
+	cargo install tealdeer &&
+	cargo install racer'
+
+# show all packages installed in the users home
+alias CargoList='cargo install --list'
+
+# update all manually installed packages
+alias CargoUpdate='
+	cargo install --force tokei &&
+	cargo install --force exa &&
+	cargo install --force ripgrep &&
+	cargo install --force tealdeer &&
+	cargo install --force racer'
+
+
+######
+# GO #
+######
+
+# install required packages
+alias GoInstall='
+	go get github.com/zserge/zs \
+	github.com/junegunn/fzf \
+	github.com/oem/lnch \
+	github.com/opennota/findimagedupes'
+
+# show all packages installed in the users home
+alias GoList='cd ~/.go/ && go list ./... && cd -'
+
+# update all manually installed packages
+alias GoUpdate='
+	go get -u github.com/zserge/zs \
+	github.com/junegunn/fzf \
+	github.com/oem/lnch \
+	github.com/opennota/findimagedupes'

@@ -1,0 +1,21 @@
+# /etc/zsh/zshenv
+
+# Load environment settings from profile.env, which is created by
+# env-update from the files in /etc/env.d
+if [ -e /etc/profile.env ] ; then
+	. /etc/profile.env
+fi
+
+# Set 022 for root and 077 for normal users
+if [ "$EUID" = "0" ] || [ "$USER" = "root" ] ; then
+	umask 022
+else
+	umask 077
+fi
+
+# Set up PATH
+PATH="${ROOTPATH}"; export PATH
+unset ROOTPATH
+
+# Set ZDOTDIR
+ZDOTDIR=~/.zsh; export ZDOTDIR
