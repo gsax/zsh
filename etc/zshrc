@@ -216,9 +216,6 @@ foreground-vi() {
 zle -N foreground-vi
 bindkey '^Z' foreground-vi
 
-# make alias for vimdiff
-alias vimdiff='nvim -d'
-
 # alias for reloading zshrc
 alias reload='. /etc/zsh/zshenv &&
 	      . $ZDOTDIR/.zshenv &&
