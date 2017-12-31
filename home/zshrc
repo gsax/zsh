@@ -90,7 +90,7 @@ alias PipUpdate='pip list --outdated --format=freeze --user | cut -d = -f 1 | xa
 alias CargoInstall='
 	cargo install tokei &&
 	cargo install exa &&
-	cargo install ripgrep &&
+	RUSTFLAGS="-C target-cpu=native" cargo install --features "simd-accel avx-accel" ripgrep &&
 	cargo install tealdeer &&
 	cargo install racer'
 
@@ -101,7 +101,7 @@ alias CargoList='cargo install --list'
 alias CargoUpdate='
 	cargo install --force tokei &&
 	cargo install --force exa &&
-	cargo install --force ripgrep &&
+	RUSTFLAGS="-C target-cpu=native" cargo install --features "simd-accel avx-accel" --force ripgrep &&
 	cargo install --force tealdeer &&
 	cargo install --force racer'
 
