@@ -40,6 +40,11 @@ alias homekeeper='etckeeper commit -d /home/chaisen/'
 # aliases for translation with leo
 alias dict='surfraw leodict'
 
+# clone projects from GitHub
+GitHub() {
+	command git clone 'https://github.com/'"$@"
+}
+
 # mosh connections to my uberspace webspaces
 alias uber-gsax='mosh -p 62828 uber-gsax'
 alias uber-protaisn='mosh -p 61106 uber-protaisn'
