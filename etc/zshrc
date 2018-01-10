@@ -114,13 +114,13 @@ fi
 
 # set different prompts for root and users
 if [[ ${EUID} == 0 ]] ; then
-    PROMPT="%{$fg[red]%}%B%n%b%{$reset_color%}%{$fg[blue]%}%B@%b%{$reset_color%}%{$fg[green]%}%m%{$reset_color%} %{$fg[blue]%}%B%1~ %#%b%{$reset_color%} "
+    PROMPT="%{$fg[blue]%}%B%1~%{$reset_color%}%{$fg[red]%B%} 💩❯%b%{$reset_color%} "
 else
-    PROMPT="%{$fg[green]%}%B%n%b%{$reset_color%}%{$fg[blue]%}%B@%b%{$reset_color%}%{$fg[green]%}%m%{$reset_color%} %{$fg[blue]%}%B%1~ %#%b%{$reset_color%} "
+    PROMPT="%{$fg[blue]%}%B%1~%{$reset_color%}%{$fg[green]%B%}❯%b%{$reset_color%} "
 fi
 
 # set right prompt
-RPROMPT="%{$fg[yellow]%}%?%{$reset_color%} %{$fg[blue]%}[%*]%{$reset_color%}"
+RPROMPT="%{$fg[yellow]%}%?%{$reset_color%}"
 
 # show duration of program execution > 10s
 REPORTTIME=10
