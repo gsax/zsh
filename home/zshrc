@@ -11,10 +11,6 @@ source "/home/chaisen/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh"
 [[ -x `which rg` ]] &&
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --follow -g ""'
 
-# load nvm
-[ -s "$NVM_DIR/nvm.sh" ] && 
-source "$NVM_DIR/nvm.sh"
-
 # stack autocompletion
 [[ -x `which stack` ]] &&
 eval "$(stack --bash-completion-script stack)"
