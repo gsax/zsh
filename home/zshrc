@@ -23,8 +23,7 @@ source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Aliases
 
 # go quick to private wiki
-alias wiki='w3m http://pc.protaisn:5001/'
-alias wiki-graphic='/usr/bin/firefox -P chaisen http://pc.protaisn:5001/'
+alias wiki='/usr/bin/firefox -P chaisen http://pc.protaisn:5001/'
 
 # a test http server on localhost
 alias httpd='/usr/bin/gatling -F -T 23 -P 2M -d -V -i 127.0.0.1 -p 8080'
@@ -34,9 +33,6 @@ alias youtube-dl='youtube-dl --restrict-filenames'
 
 # don't store su in history
 alias su=' su'
-
-# use etckeeper for the homedir
-alias homekeeper='etckeeper commit -d /home/chaisen/'
 
 # aliases for translation with leo
 alias dict='surfraw leodict'
