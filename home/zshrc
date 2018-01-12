@@ -1,3 +1,30 @@
+# Set custom prompt, with git support
+
+NT_PROMPT_SYMBOL=' ❱ '
+
+function precmd() {
+	autoload -Uz vcs_info
+	autoload -U add-zsh-hook
+	setopt prompt_subst
+
+	zstyle ':vcs_info*' enable git
+	zstyle ':vcs_info:*' check-for-changes true
+	zstyle ':vcs_info:*' stagedstr '%F{yellow}⚙%f'
+	zstyle ':vcs_info:*' unstagedstr '%F{red}✖%f'
+
+	if test -n "$(git status --porcelain --ignore-submodules)"; then
+		zstyle ':vcs_info:*' formats ' %F{magenta}[ %b]%f %u%c'
+	else
+		zstyle ':vcs_info:*' formats ' %F{magenta}[ %b]%f %F{green}✔%f'
+	fi
+
+	vcs_info
+
+	PROMPT='%F{blue}%1~%f${vcs_info_msg_0_}%(?.%F{green}${NT_PROMPT_SYMBOL}%f.%F{red}${NT_PROMPT_SYMBOL}%f)'
+	RPROMPT='%(?.%F{green}$?%f.%F{red}$?%f)'
+}
+
+
 # Source the Environment
 
 # fzf settings
