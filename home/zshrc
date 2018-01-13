@@ -98,10 +98,19 @@ alias ltx='lt -@'
 alias lta='lt -a'
 alias ltax='lta -@'
 
-# find aliases
-alias Ff='find . -iname'
-alias Fc='find . -type f | wc -l'
-alias Fl='find -L . -type l'
+# find shortcuts
+# case insensitive search
+Ff() {
+	command bfs . -iname "*$@*"
+}
+# count all files in a folder
+Fc() {
+	command bfs "$@" -type f | wc -l
+}
+# find broken symlinks
+Fl() {
+	command bfs -L "$@" -type l
+}
 
 
 ##########
