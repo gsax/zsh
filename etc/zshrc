@@ -78,11 +78,15 @@ else
 fi
 
 # set different prompts for root and users
+setopt prompt_subst
+
 if [[ "$EUID" == 0 ]] || [[ "$USER" == root ]] ; then
-	PROMPT="%{$fg[blue]%}%B%1~%{$reset_color%}%{$fg[red]%B%} 💩❯%b%{$reset_color%} "
+	PROMPT_SYMBOL='%F{red}%B ❮❮ %b%f'
 else
-	PROMPT="%{$fg[blue]%}%B%1~%{$reset_color%}%{$fg[green]%B%}❯%b%{$reset_color%} "
+	PROMPT_SYMBOL='%F{green}%B ❯❯ %b%f'
 fi
+
+PROMPT='%F{blue}%1~%f${PROMPT_SYMBOL}'
 
 # set right prompt
 RPROMPT="%{$fg[yellow]%}%?%{$reset_color%}"
