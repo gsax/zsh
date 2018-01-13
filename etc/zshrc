@@ -1,8 +1,9 @@
 export HISTSIZE=100000
 export SAVEHIST=100000
 export HISTFILE=$ZDOTDIR/.zhistory
+
 # load LS_COLORS
-eval "`dircolors -b`"
+eval "$(dircolors -b)"
 
 # load modules
 # colorful output
@@ -57,42 +58,6 @@ setopt no_beep
 # use emacs style:
 bindkey -e
 
-# bind insert, del, home, end, pgup and pgdn in different terminals
-case $TERM in
-screen*)
-	bindkey "^[[1~" beginning-of-line
-	bindkey "^[[4~" end-of-line
-	bindkey "^[[P" delete-char
-	bindkey "^[[4h" quoted-insert
-	bindkey "^[[5~" history-beginning-search-backward
-	bindkey "^[[6~" history-beginning-search-forward
-;;
-st*)
-	bindkey "^[[H" beginning-of-line
-	bindkey "^[[4~" end-of-line
-	bindkey "^[[P" delete-char
-	bindkey "^[[4h" quoted-insert
-	bindkey "^[[5~" history-beginning-search-backward
-	bindkey "^[[6~" history-beginning-search-forward
-;;
-rxvt*)
-	bindkey "^[[7~" beginning-of-line
-	bindkey "^[[8~" end-of-line
-	bindkey "^[[3~" delete-char
-	bindkey "^[[2~" quoted-insert
-	bindkey "^[[5~" history-beginning-search-backward
-	bindkey "^[[6~" history-beginning-search-forward
-;;
-linux)
-	bindkey "^[[1~" beginning-of-line
-	bindkey "^[[4~" end-of-line
-	bindkey "^[[3~" delete-char
-	bindkey "^[[2~" quoted-insert
-	bindkey "^[[5~" history-beginning-search-backward
-	bindkey "^[[6~" history-beginning-search-forward
-;;
-esac
-
 # whenever a command completion is attempted, make sure the entire command path
 # is hashed first.
 setopt hash_list_all
@@ -104,19 +69,19 @@ zstyle ':completion:*' menu select=5
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # autocomplete PID when jobname is given
-if [[ ${EUID} == 0 ]] ; then
-    zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-    zstyle ':completion:*:*:kill:*' command 'ps -e -o pid,%cpu,tty,cputime,cmd'
+if [[ "$EUID" == 0 ]] || [[ "$USER" == root ]] ; then
+	zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+	zstyle ':completion:*:*:kill:*' command 'ps -e -o pid,%cpu,tty,cputime,cmd'
 else
-    zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-    zstyle ':completion:*:*:kill:*' command 'ps -u$USER -o pid,%cpu,tty,cputime,cmd'
+	zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+	zstyle ':completion:*:*:kill:*' command 'ps -u$USER -o pid,%cpu,tty,cputime,cmd'
 fi
 
 # set different prompts for root and users
-if [[ ${EUID} == 0 ]] ; then
-    PROMPT="%{$fg[blue]%}%B%1~%{$reset_color%}%{$fg[red]%B%} 💩❯%b%{$reset_color%} "
+if [[ "$EUID" == 0 ]] || [[ "$USER" == root ]] ; then
+	PROMPT="%{$fg[blue]%}%B%1~%{$reset_color%}%{$fg[red]%B%} 💩❯%b%{$reset_color%} "
 else
-    PROMPT="%{$fg[blue]%}%B%1~%{$reset_color%}%{$fg[green]%B%}❯%b%{$reset_color%} "
+	PROMPT="%{$fg[blue]%}%B%1~%{$reset_color%}%{$fg[green]%B%}❯%b%{$reset_color%} "
 fi
 
 # set right prompt
@@ -124,48 +89,6 @@ RPROMPT="%{$fg[yellow]%}%?%{$reset_color%}"
 
 # show duration of program execution > 10s
 REPORTTIME=10
-
-# set titles of terms
-function ESC_print () {
-    info_print $'\ek' $'\e\\' "$@"
-}
-function set_title () {
-    info_print $'\e]0;' $'\a' "$@"
-}
-
-function info_print () {
-    local esc_begin esc_end
-    esc_begin="$1"
-    esc_end="$2"
-    shift 2
-    printf '%s' ${esc_begin}
-    printf '%s' "$*"
-    printf '%s' "${esc_end}"
-}
-
-precmd () {
-    if [[ $TERM == screen* ]] ; then
-        ESC_print "zsh"
-    fi
-    # adjust title of xterm
-    case $TERM in
-        (xterm*|rxvt*)
-	    #set_title ${(%):-"%n@%m: %~"}
-	    set_title ${(%):-"%n@%m: zsh"}
-	    ;;
-    esac
-}
-
-# preexec() => a function running before every command
-preexec () {
-# set screen window title if running in a screen
-    if [[ "$TERM" == screen* ]] ; then
-        # local CMD=${1[(wr)^(*=*|sudo|ssh|-*)]}       # don't use hostname
-	# local CMD=${1[(wr)^(*=*|sudo|ssh|-*)]}$NAME" # use hostname
-	local CMD="${1}"
-	ESC_print ${CMD}
-    fi
-}
 
 # support colors in less
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -178,19 +101,14 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 export GROFF_NO_SGR=1
 
 # lets make ls a colorfull output and append file type indicators to entries
-if [[ -x `which exa` ]]; then
-  alias ls='exa -F --time-style=long-iso'
-else
-  alias ls='ls --color=auto -F --time-style=long-iso'
-fi
+alias ls='ls --color=auto -F --time-style=long-iso'
 
 # colorfull grep
 alias grep='grep --color=auto'
 
 # make some programs colorfull with grc
-if [[ -x `which grc` ]]; then
-  source /etc/zsh/grc.sh
-fi
+[[ -x $(which grc) ]] &&
+source /etc/zsh/grc.sh
 
 # dir control
 export DIRSTACKSIZE=10
@@ -202,31 +120,32 @@ setopt pushd_to_home
 # use the DIRSTACK in all sessions
 DIRSTACKFILE=$ZDOTDIR/.zdirs
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
-  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-  [[ -d $dirstack[1] ]] && cd $dirstack[1] && cd $OLDPWD
+	dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+	[[ -d $dirstack[1] ]] && cd $dirstack[1] && cd $OLDPWD
 fi
 chpwd() {
-  print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
+	print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
 }
 
 # let ^Z toggle vi
 foreground-vi() {
-  fg %vi
+	fg %vi
 }
 zle -N foreground-vi
 bindkey '^Z' foreground-vi
 
 # alias for reloading zshrc
-alias reload='. /etc/zsh/zshenv &&
-	      . $ZDOTDIR/.zshenv &&
-              . /etc/zsh/zprofile &&
-	      . $ZDOTDIR/.zprofile &&
-              . /etc/zsh/zshrc &&
-	      . $ZDOTDIR/.zshrc &&
-              . /etc/zsh/zlogin &&
-	      . $ZDOTDIR/.zlogin &&
-	      rehash &&
-	      echo "ZSH config reloaded"'
+alias reload='
+	source /etc/zsh/zshenv &&
+	source $ZDOTDIR/.zshenv &&
+	source /etc/zsh/zprofile &&
+	source $ZDOTDIR/.zprofile &&
+	source /etc/zsh/zshrc &&
+	source $ZDOTDIR/.zshrc &&
+	source /etc/zsh/zlogin &&
+	source $ZDOTDIR/.zlogin &&
+	echo "ZSH config reloaded"
+'
 
 # make sure our environment is clean regarding colors
 for color in BLUE RED GREEN CYAN YELLOW MAGENTA WHITE ; unset $color
