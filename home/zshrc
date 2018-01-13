@@ -15,15 +15,15 @@ function precmd() {
 
 	vcs_info
 
-	if test -n "$vcs_info_msg_0_"; then
-		if test -n "$(git status --porcelain --ignore-submodules)"; then
+	if [[ -n $vcs_info_msg_0_ ]]; then
+		if [[ -n $(git status --porcelain --ignore-submodules) ]]; then
 			git_prompt="$vcs_info_msg_0_"
 		else
-			git_prompt="$vcs_info_msg_0_ %F{green}✔%f"
+			git_prompt="$vcs_info_msg_0_%F{green}✔%f"
 		fi
 	fi
 
-	PROMPT='%F{blue}%1~%f${vcs_info_msg_0_}%(?.%F{green}${NT_PROMPT_SYMBOL}%f.%F{red}${NT_PROMPT_SYMBOL}%f)'
+	PROMPT='%F{blue}%1~%f${git_prompt}%(?.%F{green}${NT_PROMPT_SYMBOL}%f.%F{red}${NT_PROMPT_SYMBOL}%f)'
 	RPROMPT='%(?.%F{green}$?%f.%F{red}$?%f)'
 }
 
@@ -35,19 +35,21 @@ function precmd() {
 [[ $- == *i* ]] &&
 source ~/.go/src/github.com/junegunn/fzf/shell/completion.zsh 2> /dev/null
 # key-bindings
-[ -s ~/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh ] &&
+[[ -s ~/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh ]] &&
 source ~/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh
 # use rg instead of find
-[[ -x `which rg` ]] &&
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --follow -g ""'
+[[ -x $(which rg) ]] &&
+FZF_DEFAULT_COMMAND='rg --files --no-ignore --follow -g ""'; export FZF_DEFAULT_COMMAND;
 
 # stack autocompletion
-[[ -x `which stack` ]] &&
+[[ -x $(which stack) ]] &&
 eval "$(stack --bash-completion-script stack)"
 
 # zsh autosuggestions
+[[ -s $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]] &&
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zsh syntax highlighting
+[[ -s $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]] &&
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Aliases
