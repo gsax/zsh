@@ -39,7 +39,7 @@ source ~/.go/src/github.com/junegunn/fzf/shell/completion.zsh 2> /dev/null
 source ~/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh
 # use rg instead of find
 [[ -x $(which rg) ]] &&
-FZF_DEFAULT_COMMAND='rg --files --no-ignore --follow -g ""'; export FZF_DEFAULT_COMMAND;
+FZF_DEFAULT_COMMAND='rg --files --no-ignore --follow -g ""'; export FZF_DEFAULT_COMMAND
 
 # stack autocompletion
 [[ -x $(which stack) ]] &&

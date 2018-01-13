@@ -16,9 +16,9 @@ manpath=(
 )
 
 # set path for neovim bundels
-VIMBUNDLE=~/.local/share/nvim/bundle; export VIMBUNDLE;
+VIMBUNDLE=~/.local/share/nvim/bundle; export VIMBUNDLE
 # set path for neovim configs
-VIMCONFIG=~/.config/nvim/config; export VIMCONFIG;
+VIMCONFIG=~/.config/nvim/config; export VIMCONFIG
 
 # set $GOPATH
 GOPATH=~/.go; export GOPATH;
