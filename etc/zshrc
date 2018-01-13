@@ -127,6 +127,10 @@ chpwd() {
 	print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
 }
 
+# read the correct keys for Home, End, PgUp, PgDwn, Ins and Del
+[[ -h /etc/zsh/read_terminfo.zsh || -s /etc/zsh/read_terminfo.zsh ]] &&
+source /etc/zsh/read_terminfo.zsh
+
 # let ^Z toggle vi
 foreground-vi() {
 	fg %vi
