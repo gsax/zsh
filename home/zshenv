@@ -1,22 +1,18 @@
 # set $PATH
 typeset -U path
 path=(
-    /home/chaisen/.cargo/bin
-    /home/chaisen/.gem/ruby/2.4.0/bin
-    /home/chaisen/.go/bin
-    /home/chaisen/.perl5/bin
-    /home/chaisen/.cabal/bin
-    /home/chaisen/TeXLive/2017/bin/x86_64-linux
-    /home/chaisen/node_modules/.bin
-    /home/chaisen/.local/bin
-    $path
+	/home/chaisen/.local/bin
+	/home/chaisen/.cargo/bin
+	/home/chaisen/.go/bin
+	/home/chaisen/TeXLive/2017/bin/x86_64-linux
+	$path
 )
 
 # set $MANPATH
 typeset -U path
 manpath=(
-    /home/chaisen/TeXLive/2017/texmf-dist/doc/man
-    $manpath
+	/home/chaisen/TeXLive/2017/texmf-dist/doc/man
+	$manpath
 )
 
 # set path for neovim bundels
@@ -26,9 +22,3 @@ VIMCONFIG=~/.config/nvim/config; export VIMCONFIG;
 
 # set $GOPATH
 GOPATH=~/.go; export GOPATH;
-
-# user cpan dirs
-PERL5LIB="/home/chaisen/.perl5/lib/perl5"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/chaisen/.perl5"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/chaisen/.perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/chaisen/.perl5"; export PERL_MM_OPT;
