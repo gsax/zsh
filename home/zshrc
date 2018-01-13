@@ -79,6 +79,11 @@ alias uber-gsax='mosh -p 62828 uber-gsax'
 alias uber-protaisn='mosh -p 61106 uber-protaisn'
 alias uber-straemme='mosh -p 63105 uber-straemme'
 
+# use exa instead of ls if available
+if [[ -x $(which exa) ]]; then
+	alias ls='exa -F --time-style=long-iso'
+fi
+
 # ls aliases
 alias la='ls -a'
 alias ll='ls -lg'
