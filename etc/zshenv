@@ -7,7 +7,7 @@ if [[ -e /etc/profile.env ]] ; then
 fi
 
 # Set 022 for root and 077 for normal users
-if [[ "$EUID" = 0 ]] || [[ "$USER" = root ]] ; then
+if [[ "$EUID" == 0 ]] || [[ "$USER" == root ]] ; then
 	umask 022
 else
 	umask 077
