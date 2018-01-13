@@ -16,7 +16,7 @@ function precmd() {
 	vcs_info
 
 	if [[ -n $vcs_info_msg_0_ ]]; then
-		if [[ -n $(git status --porcelain --ignore-submodules) ]]; then
+		if [[ -n $(git status --porcelain) ]]; then
 			git_prompt="$vcs_info_msg_0_"
 		else
 			git_prompt="$vcs_info_msg_0_%F{green}✔%f"
