@@ -22,7 +22,8 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -s $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]] &&
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Aliases
+
+# Aliases and Functions
 
 # go quick to private wiki
 alias wiki='/usr/bin/firefox -P chaisen http://pc.protaisn:5001/'
@@ -100,6 +101,15 @@ alias PipListOutdated='pip list --outdated --format=freeze --user | xargs -n1'
 
 # update all manually installed packages
 alias PipUpdate='pip list --outdated --format=freeze --user | cut -d = -f 1 | xargs -n1 pip install -U --user'
+
+# source virtual environment
+Venv() {
+	if [[ -n "$@" ]]; then
+		source "$@"/venv/bin/activate
+	else
+		source ./venv/bin/activate
+	fi
+}
 
 
 ########
