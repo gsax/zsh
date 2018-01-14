@@ -102,6 +102,20 @@ alias PipListOutdated='pip list --outdated --format=freeze --user | xargs -n1'
 # update all manually installed packages
 alias PipUpdate='pip list --outdated --format=freeze --user | cut -d = -f 1 | xargs -n1 pip install -U --user'
 
+
+# create virtual environment
+Vcenv() {
+	if [[ -n "$@" ]]; then
+		mkdir "$@"
+		cd "$@"
+		python -m venv venv
+		source ./venv/bin/activate
+	else
+		python -m venv venv
+		source ./venv/bin/activate
+	fi
+}
+
 # source virtual environment
 Venv() {
 	if [[ -n "$@" ]]; then
