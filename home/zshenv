@@ -11,6 +11,7 @@ path=(
 # set $MANPATH
 typeset -U path
 manpath=(
+	/home/chaisen/.local/share/man
 	/home/chaisen/TeXLive/2017/texmf-dist/doc/man
 	$manpath
 )
