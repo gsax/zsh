@@ -29,7 +29,7 @@ source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias wiki='/usr/bin/firefox -P chaisen http://pc.protaisn:5001/'
 
 # a test http server on localhost
-alias httpd='/usr/bin/gatling -F -T 23 -P 2M -d -V -i 127.0.0.1 -p 8080'
+alias httpd='/usr/bin/gatling -F -S -T 23 -P 2M -d -V -i 127.0.0.1 -p 8080'
 
 # use always underscores instead of spaces with youtube-dl
 alias youtube-dl='youtube-dl --restrict-filenames'
