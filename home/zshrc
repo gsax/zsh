@@ -15,6 +15,13 @@ FZF_DEFAULT_COMMAND='rg --files --no-ignore --follow -g ""'; export FZF_DEFAULT_
 [[ -x $(which stack) ]] &&
 eval "$(stack --bash-completion-script stack)"
 
+# load nvm
+[[ -s "$NVM_DIR/nvm.sh" ]] &&
+source "$NVM_DIR/nvm.sh"
+# load nvm autocompletion
+[[ -s "$NVM_DIR/bash_completion" ]] &&
+source "$NVM_DIR/bash_completion"
+
 # zsh autosuggestions
 [[ -s $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]] &&
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

@@ -22,4 +22,7 @@ VIMBUNDLE=~/.local/share/nvim/bundle; export VIMBUNDLE
 VIMCONFIG=~/.config/nvim/config; export VIMCONFIG
 
 # set $GOPATH
-GOPATH=~/.go; export GOPATH;
+GOPATH=~/.go; export GOPATH
+
+# set $NVM_DIR
+NVM_DIR=~/.nvm; export NVM_DIR
