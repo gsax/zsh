@@ -4,6 +4,7 @@ path=(
 	/home/chaisen/.local/bin
 	/home/chaisen/.cargo/bin
 	/home/chaisen/.go/bin
+	/home/chaisen/perl5/bin
 	/home/chaisen/Appz/TeXLive/2017/bin/x86_64-linux
 	$path
 )
