@@ -41,6 +41,11 @@ alias httpd='/usr/bin/gatling -F -S -T 23 -P 2M -d -V -i 127.0.0.1 -p 8080'
 # use always underscores instead of spaces with youtube-dl
 alias youtube-dl='youtube-dl --restrict-filenames'
 
+# download videos with codecs supported by my TV
+TV-dl() {
+  command youtube-dl --restrict-filenames -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$@"
+}
+
 # don't store su in history
 alias su=' su'
 
