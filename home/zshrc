@@ -57,7 +57,7 @@ alias uber-straemme='mosh -p 63105 uber-straemme'
 
 # use exa instead of ls if available
 if [[ -x $(which exa) ]]; then
-	alias ls='exa -F --time-style=long-iso'
+	alias ls='exa -F -sName --time-style=long-iso'
 fi
 
 # ls aliases
