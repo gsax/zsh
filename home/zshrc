@@ -36,7 +36,7 @@ alias youtube-dl='youtube-dl --restrict-filenames'
 
 # download videos with codecs supported by my TV
 TV-dl() {
-  command youtube-dl --restrict-filenames -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$@"
+  command youtube-dl --restrict-filenames -f 'bestvideo[ext=mp4][fps <=30]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$@"
 }
 
 # don't store su in history
@@ -78,6 +78,9 @@ alias lt='ls -T'
 alias ltx='lt -@'
 alias lta='lt -a'
 alias ltax='lta -@'
+
+# cal start week with mondays
+alias cal='cal -m'
 
 # find shortcuts
 # case insensitive search
