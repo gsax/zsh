@@ -5,7 +5,7 @@ path=(
 	/home/chaisen/.cargo/bin
 	/home/chaisen/.go/bin
 	/home/chaisen/perl5/bin
-	/home/chaisen/Appz/TeXLive/2017/bin/x86_64-linux
+	/home/chaisen/Appz/TeXLive/2018/bin/x86_64-linux
 	$path
 )
 
@@ -13,7 +13,7 @@ path=(
 typeset -U path
 manpath=(
 	/home/chaisen/.local/share/man
-	/home/chaisen/Appz/TeXLive/2017/texmf-dist/doc/man
+	/home/chaisen/Appz/TeXLive/2018/texmf-dist/doc/man
 	$manpath
 )
 
