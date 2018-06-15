@@ -215,6 +215,7 @@ alias GoInstall='
 	github.com/junegunn/fzf \
 	github.com/oem/lnch \
 	github.com/FooSoft/homemaker \
+	github.com/derekparker/delve/cmd/dlv \
 	github.com/opennota/findimagedupes'
 
 # show all packages installed in the users home
@@ -226,4 +227,5 @@ alias GoUpdate='
 	github.com/junegunn/fzf \
 	github.com/oem/lnch \
 	github.com/FooSoft/homemaker \
+	github.com/derekparker/delve/cmd/dlv \
 	github.com/opennota/findimagedupes'
