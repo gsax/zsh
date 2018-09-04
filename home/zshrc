@@ -149,7 +149,7 @@ Nvm() {
 ##########
 
 # install required packages
-alias PipInstall='pip install khal khard pylama vdirsyncer --user'
+alias PipInstall='pip install pylama --user'
 
 # show outdated packages
 alias PipListOutdated='pip list --outdated --format=freeze --user | xargs -n1'
