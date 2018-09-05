@@ -188,8 +188,6 @@ Venv() {
 # install required packages
 alias CargoInstall='
 	cargo install tokei &&
-	cargo install exa &&
-	cargo install fd-find &&
 	RUSTFLAGS="-C target-cpu=haswell" cargo install --features "simd-accel avx-accel" ripgrep &&
 	cargo install tealdeer &&
 	cargo install racer'
@@ -200,8 +198,6 @@ alias CargoList='cargo install --list'
 # update all manually installed packages
 alias CargoUpdate='
 	cargo install --force tokei &&
-	cargo install --force exa &&
-	cargo install --force fd-find &&
 	RUSTFLAGS="-C target-cpu=haswell" cargo install --features "simd-accel avx-accel" --force ripgrep &&
 	cargo install --force tealdeer &&
 	cargo install --force racer'
