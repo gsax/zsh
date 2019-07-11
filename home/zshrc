@@ -89,7 +89,7 @@ Ff() {
 }
 # count all files in a folder
 Fc() {
-	command bfs "$@" -type f | wc -l
+	command fd . "$@" -t f | wc -l
 }
 # find broken symlinks
 Fl() {
