@@ -14,8 +14,7 @@ else
 fi
 
 # Set up PATH
-PATH="${ROOTPATH}"; export PATH
-unset ROOTPATH
+PATH="${PATH}"; export PATH
 
 # Set ZDOTDIR
 ZDOTDIR=~/.zsh; export ZDOTDIR

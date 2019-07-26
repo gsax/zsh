@@ -78,14 +78,21 @@ else
 fi
 
 # set different prompts for root and users
+setopt prompt_subst
+
 if [[ "$EUID" == 0 ]] || [[ "$USER" == root ]] ; then
-	PROMPT="%{$fg[red]%}%B%n%b%{$reset_color%}%{$fg[blue]%}%B@%b%{$reset_color%}%{$fg[green]%}%m%{$reset_color%} %{$fg[blue]%}%B%1~ %#%b%{$reset_color%} "
+	PROMPT_SYMBOL='%F{red}%B ❮❮ %b%f'
 else
-	PROMPT="%{$fg[green]%}%B%n%b%{$reset_color%}%{$fg[blue]%}%B@%b%{$reset_color%}%{$fg[green]%}%m%{$reset_color%} %{$fg[blue]%}%B%1~ %#%b%{$reset_color%} "
+	PROMPT_SYMBOL='%F{green}%B ❯❯ %b%f'
 fi
+
+PROMPT='%F{blue}%1~%f${PROMPT_SYMBOL}'
 
 # set right prompt
 RPROMPT="%{$fg[yellow]%}%?%{$reset_color%}"
+
+# nicer output for time
+export TIMEFMT=$'\n%J\n\nreal\t%*E\nuser\t%*U\nsys\t%*S'
 
 # show duration of program execution > 10s
 REPORTTIME=10

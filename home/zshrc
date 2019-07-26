@@ -29,10 +29,15 @@ source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias wiki='/usr/bin/firefox -P chaisen http://pc.protaisn:5001/'
 
 # a test http server on localhost
-alias httpd='/usr/bin/gatling -F -T 23 -P 2M -d -V -i 127.0.0.1 -p 8080'
+alias httpd='/usr/bin/gatling -F -S -T 23 -P 2M -d -V -i 127.0.0.1 -p 8080'
 
 # use always underscores instead of spaces with youtube-dl
 alias youtube-dl='youtube-dl --restrict-filenames'
+
+# download videos with codecs supported by my TV
+TV-dl() {
+  command youtube-dl --restrict-filenames -f 'bestvideo[ext=mp4][fps <=30]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$@"
+}
 
 # don't store su in history
 alias su=' su'
@@ -52,7 +57,7 @@ alias uber-straemme='mosh -p 63105 uber-straemme'
 
 # use exa instead of ls if available
 if [[ -x $(which exa) ]]; then
-	alias ls='exa -F --time-style=long-iso'
+	alias ls='exa -F -sName --time-style=long-iso'
 fi
 
 # ls aliases
@@ -74,6 +79,9 @@ alias ltx='lt -@'
 alias lta='lt -a'
 alias ltax='lta -@'
 
+# cal start week with mondays
+alias cal='cal -m'
+
 # find shortcuts
 # case insensitive search
 Ff() {
@@ -81,26 +89,96 @@ Ff() {
 }
 # count all files in a folder
 Fc() {
-	command bfs "$@" -type f | wc -l
+	command fd . "$@" -t f | wc -l
 }
 # find broken symlinks
 Fl() {
 	command bfs -L "$@" -type l
 }
 
+# unpack
+unpack() {
+	setopt localoptions
+	setopt kshglob
+	local c e i
+
+	(($#)) || return
+
+	for i; do
+		c=''
+		e=1
+
+		if [[ ! -r $i ]]; then
+			echo "$0: file is unreadable: \`$i'" >&2
+			continue
+		fi
+
+		case $i in
+			*.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
+				c=(bsdtar xf);;
+			*.7z)  c=(7z x);;
+			*.Z)   c=(uncompress);;
+			*.bz2) c=(bunzip2);;
+			*.gz)  c=(gunzip);;
+			*.rar) c=(7z x);;
+			*.xz)  c=(unxz);;
+			*.zip) c=(unzip);;
+			*.zst) c=(unzstd);;
+			*)     echo "$0: unrecognized file extension: \`$i'" >&2
+				continue;;
+		esac
+
+		command "${c[@]}" "$i"
+		((e = e || $?))
+	done
+	return "$e"
+}
+
+# load nvm only on demand
+Nvm() {
+	# load nvm
+	[[ -s "$NVM_DIR/nvm.sh" ]] &&
+		source "$NVM_DIR/nvm.sh"
+	# load nvm autocompletion
+	[[ -s "$NVM_DIR/bash_completion" ]] &&
+		source "$NVM_DIR/bash_completion"
+}
 
 ##########
 # PYTHON #
 ##########
 
 # install required packages
-alias PipInstall='pip install khal khard pylama vdirsyncer --user'
+alias PipInstall='pip install pylama --user'
 
 # show outdated packages
 alias PipListOutdated='pip list --outdated --format=freeze --user | xargs -n1'
 
 # update all manually installed packages
 alias PipUpdate='pip list --outdated --format=freeze --user | cut -d = -f 1 | xargs -n1 pip install -U --user'
+
+# source virtual environment
+Venv() {
+	if [[ -n "$@" ]]; then
+		source "$@"/venv/bin/activate
+	else
+		source ./venv/bin/activate
+	fi
+}
+
+
+# create virtual environment
+Vcenv() {
+	if [[ -n "$@" ]]; then
+		mkdir "$@"
+		cd "$@"
+		python -m venv venv
+		source ./venv/bin/activate
+	else
+		python -m venv venv
+		source ./venv/bin/activate
+	fi
+}
 
 # source virtual environment
 Venv() {
@@ -119,8 +197,7 @@ Venv() {
 # install required packages
 alias CargoInstall='
 	cargo install tokei &&
-	cargo install exa &&
-	RUSTFLAGS="-C target-cpu=native" cargo install --features "simd-accel avx-accel" ripgrep &&
+	RUSTFLAGS="-C target-cpu=haswell" cargo install --features "simd-accel pcre2" ripgrep &&
 	cargo install tealdeer &&
 	cargo install racer'
 
@@ -130,8 +207,7 @@ alias CargoList='cargo install --list'
 # update all manually installed packages
 alias CargoUpdate='
 	cargo install --force tokei &&
-	cargo install --force exa &&
-	RUSTFLAGS="-C target-cpu=native" cargo install --features "simd-accel avx-accel" --force ripgrep &&
+	RUSTFLAGS="-C target-cpu=haswell" cargo install --features "simd-accel pcre2" --force ripgrep &&
 	cargo install --force tealdeer &&
 	cargo install --force racer'
 
@@ -146,6 +222,8 @@ alias GoInstall='
 	github.com/junegunn/fzf \
 	github.com/oem/lnch \
 	github.com/FooSoft/homemaker \
+	github.com/derekparker/delve/cmd/dlv \
+	github.com/felixge/go-xxd \
 	github.com/opennota/findimagedupes'
 
 # show all packages installed in the users home
@@ -157,4 +235,6 @@ alias GoUpdate='
 	github.com/junegunn/fzf \
 	github.com/oem/lnch \
 	github.com/FooSoft/homemaker \
+	github.com/derekparker/delve/cmd/dlv \
+	github.com/felixge/go-xxd \
 	github.com/opennota/findimagedupes'
