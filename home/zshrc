@@ -8,8 +8,8 @@ source ~/.go/src/github.com/junegunn/fzf/shell/completion.zsh 2> /dev/null
 [[ -s ~/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh ]] &&
 source ~/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh
 # use rg instead of find
-[[ -x $(which rg) ]] &&
-FZF_DEFAULT_COMMAND='rg --files --no-ignore --follow -g ""'; export FZF_DEFAULT_COMMAND
+[[ -x $(which fd) ]] &&
+FZF_DEFAULT_COMMAND='fd --type f'; export FZF_DEFAULT_COMMAND
 
 # stack autocompletion
 [[ -x $(which stack) ]] &&
