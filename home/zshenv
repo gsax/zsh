@@ -17,7 +17,7 @@ manpath=(
 	$manpath
 )
 
-# set path for neovim bundels
+# set path for neovim bundles
 VIMBUNDLE=~/.local/share/nvim/bundle; export VIMBUNDLE
 # set path for neovim configs
 VIMCONFIG=~/.config/nvim/config; export VIMCONFIG
