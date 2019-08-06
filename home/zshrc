@@ -232,7 +232,8 @@ alias GoInstall='
 	github.com/FooSoft/homemaker \
 	github.com/derekparker/delve/cmd/dlv \
 	github.com/felixge/go-xxd \
-	github.com/opennota/findimagedupes'
+	github.com/opennota/findimagedupes \
+	github.com/thefryscorer/schemer2'
 
 # show all packages installed in the users home
 alias GoList='cd ~/.go/ && go list ./... && cd -'
@@ -245,4 +246,5 @@ alias GoUpdate='
 	github.com/FooSoft/homemaker \
 	github.com/derekparker/delve/cmd/dlv \
 	github.com/felixge/go-xxd \
-	github.com/opennota/findimagedupes'
+	github.com/opennota/findimagedupes \
+	github.com/thefryscorer/schemer2'
