@@ -34,3 +34,6 @@ eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 
 # set $NVM_DIR
 NVM_DIR=~/.nvm; export NVM_DIR
+
+# nnn use $VISUAL for opening text files
+NNN_USE_EDITOR=1; export NNN_USE_EDITOR
