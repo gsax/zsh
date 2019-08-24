@@ -17,6 +17,10 @@ manpath=(
 	$manpath
 )
 
+# set editor to users local neovim
+VISUAL=~/.local/bin/vi; export VISUAL
+EDITOR=~/.local/bin/vi; export EDITOR
+
 # set path for neovim bundles
 VIMBUNDLE=~/.local/share/nvim/bundle; export VIMBUNDLE
 # set path for neovim configs
