@@ -1,21 +1,29 @@
 # set $PATH
 typeset -U path
 path=(
-	/home/chaisen/.local/bin
-	/home/chaisen/.cargo/bin
-	/home/chaisen/.go/bin
-	/home/chaisen/perl5/bin
-	/home/chaisen/Appz/TeXLive/2019/bin/x86_64-linux
+	/home/gsx/.local/bin
+	/home/gsx/.ghcup/bin
+	/home/gsx/.go/bin
+	/home/gsx/Appz/texlive/2020/bin/x86_64-linux
+	/usr/bin/core_perl
+	/usr/bin/site_perl
+	/usr/bin/vendor_perl
 	$path
 )
 
 # set $MANPATH
 typeset -U path
 manpath=(
-	/home/chaisen/.local/share/man
-	/home/chaisen/Appz/TeXLive/2019/texmf-dist/doc/man
+	/home/gsx/.local/share/man
+	/home/gsx/Appz/texlive/2020/texmf-dist/doc/man
 	$manpath
 )
+
+# set pager, editor, visual and browser variables
+PAGER=/usr/bin/less; export PAGER
+EDITOR=/usr/bin/vi; export EDITOR
+VISUAL=/usr/bin/vi; export VISUAL
+BROWSER=/usr/bin/firefox; export BROWSER
 
 # set path for neovim bundles
 VIMBUNDLE=~/.local/share/nvim/bundle; export VIMBUNDLE
@@ -24,12 +32,3 @@ VIMCONFIG=~/.config/nvim/config; export VIMCONFIG
 
 # set $GOPATH
 GOPATH=~/.go; export GOPATH
-
-# setup local::lib
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
-
-# set $NVM_DIR
-NVM_DIR=~/.nvm; export NVM_DIR
-
-# nnn use $VISUAL for opening text files
-NNN_USE_EDITOR=1; export NNN_USE_EDITOR

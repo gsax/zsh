@@ -3,21 +3,13 @@
 # fzf settings
 # autocompletion
 [[ $- == *i* ]] &&
-source ~/.go/src/github.com/junegunn/fzf/shell/completion.zsh 2> /dev/null
+source /usr/share/fzf/completion.zsh 2> /dev/null
 # key-bindings
-[[ -s ~/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh ]] &&
-source ~/.go/src/github.com/junegunn/fzf/shell/key-bindings.zsh
+[[ -s /usr/share/fzf/key-bindings.zsh ]] &&
+source /usr/share/fzf/key-bindings.zsh
 # use rg instead of find
 [[ -x $(which fd) ]] &&
 FZF_DEFAULT_COMMAND='fd --type f'; export FZF_DEFAULT_COMMAND
-
-# nnn settings
-[[ -x $(which nnn) ]] &&
-source ~/Appz/nnn/misc/quitcd/quitcd.zsh
-
-# broot settings
-[[ -x $(which broot) ]] &&
-source ~/.config/broot/launcher/bash/br
 
 # stack autocompletion
 [[ -x $(which stack) ]] &&
@@ -33,25 +25,41 @@ source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Aliases and Functions
 
-# go quick to private wiki
-alias wiki='/usr/bin/firefox -P chaisen http://pc.protaisn:5001/'
-
-# a test http server on localhost
-alias httpd='/usr/bin/gatling -F -S -T 23 -P 2M -d -V -i 127.0.0.1 -p 8080'
-
-# use always underscores instead of spaces with youtube-dl
-alias youtube-dl='youtube-dl --restrict-filenames'
-
-# download videos with codecs supported by my TV
-TV-dl() {
-  command youtube-dl --restrict-filenames -f 'bestvideo[ext=mp4][fps <=30]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$@"
-}
-
 # don't store su in history
 alias su=' su'
 
-# aliases for translation with leo
-alias dict='surfraw leodict'
+# allow user to shutdown
+alias halt='sudo halt'
+alias poweroff='sudo poweroff'
+alias reboot='sudo reboot'
+
+# run nmap as root
+nmap() {
+	command sudo nmap "$@"
+}
+
+# run some monitoring tools as root
+iotop() {
+	command sudo iotop "$@"
+}
+hddtemp() {
+	command sudo hddtemp "$@"
+}
+nethogs() {
+	command sudo nethogs "$@"
+}
+pktstat() {
+	command sudo pktstat "$@"
+}
+wavemon() {
+	command sudo wavemon "$@"
+}
+
+# ls aliases
+alias ll="ls -l"
+alias la="ls -a"
+alias lla="ls -la"
+alias llh="ll -h"
 
 # clone projects from GitHub
 GitHub() {
@@ -59,33 +67,12 @@ GitHub() {
 }
 
 # mosh connections to my uberspace webspaces
-alias uber-gsax='mosh -p 62828 uber-gsax'
-alias uber-protaisn='mosh -p 61106 uber-protaisn'
-alias uber-straemme='mosh -p 63105 uber-straemme'
-
-# use exa instead of ls if available
-if [[ -x $(which exa) ]]; then
-	alias ls='exa -F -sName --time-style=long-iso'
-fi
-
-# ls aliases
-alias la='ls -a'
-alias ll='ls -lg'
-alias llx='ll -@'
-alias lla='ll -a'
-alias llax='llx -@'
-alias llb='ll -b'
-alias llbx='lb -@'
-alias llba='lb -a'
-alias llbax='lba -@'
-alias llB='ll -B'
-alias llBx='lB -@'
-alias llBa='lB -a'
-alias llBax='lBa -@'
-alias lt='ls -T'
-alias ltx='lt -@'
-alias lta='lt -a'
-alias ltax='lta -@'
+alias uber-gsx='mosh -p 41400 gsx'
+alias uber-gsxbms='mosh -p 41420 gsxbms'
+alias uber-gsxcloud='mosh -p 41240 gsxcloud'
+alias uber-gsxmath='mosh -p 41100 gsxmath'
+alias uber-gsxwiki='mosh -p 45800 gsxwiki'
+alias uber-analspinach='mosh -p 44460 analspinach'
 
 # cal start week with mondays
 alias cal='cal -m'
@@ -94,18 +81,12 @@ gcal() {
 	command gcal --iso-week-number=yes -s1 -qDE_BY -H '\e[32m:\e[0m:\e[34m:\e[0m' "$@"
 }
 
-# find shortcuts
-# case insensitive search
-Ff() {
-	command bfs . -iname "*$@*"
-}
-# count all files in a folder
-Fc() {
-	command fd . "$@" -t f | wc -l
-}
-# find broken symlinks
-Fl() {
-	command bfs -L "$@" -type l
+# use always underscores instead of spaces with youtube-dl
+#alias youtube-dl='youtube-dl --restrict-filenames'
+
+# download videos with codecs supported by my TV
+TV-dl() {
+  command youtube-dl -f 'bestvideo[ext=mp4][fps <=30]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$@"
 }
 
 # unpack
@@ -126,7 +107,7 @@ unpack() {
 		fi
 
 		case $i in
-			*.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
+			*.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz|zst)))))
 				c=(bsdtar xf);;
 			*.7z)  c=(7z x);;
 			*.Z)   c=(uncompress);;
@@ -146,22 +127,9 @@ unpack() {
 	return "$e"
 }
 
-# load nvm only on demand
-Nvm() {
-	# load nvm
-	[[ -s "$NVM_DIR/nvm.sh" ]] &&
-		source "$NVM_DIR/nvm.sh"
-	# load nvm autocompletion
-	[[ -s "$NVM_DIR/bash_completion" ]] &&
-		source "$NVM_DIR/bash_completion"
-}
-
 ##########
 # PYTHON #
 ##########
-
-# install required packages
-alias PipInstall='pip install pylama --user'
 
 # show outdated packages
 alias PipListOutdated='pip list --outdated --format=freeze --user | xargs -n1'
@@ -192,38 +160,6 @@ Vcenv() {
 	fi
 }
 
-# source virtual environment
-Venv() {
-	if [[ -n "$@" ]]; then
-		source "$@"/venv/bin/activate
-	else
-		source ./venv/bin/activate
-	fi
-}
-
-
-########
-# RUST #
-########
-
-# install required packages
-alias CargoInstall='
-	cargo install tokei &&
-	RUSTFLAGS="-C target-cpu=haswell" cargo install --features "simd-accel pcre2" ripgrep &&
-	cargo install tealdeer &&
-	cargo install racer'
-
-# show all packages installed in the users home
-alias CargoList='cargo install --list'
-
-# update all manually installed packages
-alias CargoUpdate='
-	cargo install --force tokei &&
-	RUSTFLAGS="-C target-cpu=haswell" cargo install --features "simd-accel pcre2" --force ripgrep &&
-	cargo install --force tealdeer &&
-	cargo install --force racer'
-
-
 ######
 # GO #
 ######
@@ -231,13 +167,7 @@ alias CargoUpdate='
 # install required packages
 alias GoInstall='
 	go get github.com/zserge/zs \
-	github.com/junegunn/fzf \
-	github.com/oem/lnch \
-	github.com/FooSoft/homemaker \
-	github.com/derekparker/delve/cmd/dlv \
-	github.com/felixge/go-xxd \
-	github.com/opennota/findimagedupes \
-	github.com/thefryscorer/schemer2'
+	github.com/opennota/findimagedupes'
 
 # show all packages installed in the users home
 alias GoList='cd ~/.go/ && go list ./... && cd -'
@@ -245,10 +175,4 @@ alias GoList='cd ~/.go/ && go list ./... && cd -'
 # update all manually installed packages
 alias GoUpdate='
 	go get -u github.com/zserge/zs \
-	github.com/junegunn/fzf \
-	github.com/oem/lnch \
-	github.com/FooSoft/homemaker \
-	github.com/derekparker/delve/cmd/dlv \
-	github.com/felixge/go-xxd \
-	github.com/opennota/findimagedupes \
-	github.com/thefryscorer/schemer2'
+	github.com/opennota/findimagedupes'
