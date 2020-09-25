@@ -1,8 +1,1 @@
-shopts=$-
-setopt nullglob
-for sh in /etc/profile.d/*.sh ; do
-	[ -r "$sh" ] && . "$sh"
-done
-unsetopt nullglob
-set -$shopts
-unset sh shopts
+emulate sh -c 'source /etc/profile'

@@ -1,11 +1,5 @@
 # /etc/zsh/zshenv
 
-# Load environment settings from profile.env, which is created by
-# env-update from the files in /etc/env.d
-if [[ -e /etc/profile.env ]] ; then
-	source /etc/profile.env
-fi
-
 # Set 022 for root and 077 for normal users
 if [[ "$EUID" == 0 ]] || [[ "$USER" == root ]] ; then
 	umask 022
@@ -18,3 +12,9 @@ PATH="${PATH}"; export PATH
 
 # Set ZDOTDIR
 ZDOTDIR=~/.zsh; export ZDOTDIR
+
+# Set the default theme for gtk-3
+export GTK_THEME='Vertex-Dark'
+
+# Set the default theme for qt / kvantum
+export QT_STYLE_OVERRIDE='kvantum-dark'

@@ -64,6 +64,9 @@ setopt hash_list_all
 # not just at the end
 setopt complete_in_word
 
+# automatically rehash completions
+zstyle ':completion:*' rehash true
+
 # select completion from a colored menu
 zstyle ':completion:*' menu select=5
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -93,9 +96,6 @@ RPROMPT="%{$fg[yellow]%}%?%{$reset_color%}"
 
 # nicer output for time
 export TIMEFMT=$'\n%J\n\nreal\t%*E\nuser\t%*U\nsys\t%*S'
-
-# show duration of program execution > 10s
-REPORTTIME=10
 
 # support colors in less
 export LESS_TERMCAP_mb=$'\E[01;31m'
