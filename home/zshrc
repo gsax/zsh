@@ -17,10 +17,10 @@ eval "$(stack --bash-completion-script stack)"
 
 # zsh autosuggestions
 [[ -s $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]] &&
-source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zsh syntax highlighting
 [[ -s $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]] &&
-source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Nobody need flow control anymore. Troublesome feature.
 setopt noflowcontrol

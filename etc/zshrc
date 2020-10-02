@@ -1,6 +1,6 @@
 export HISTSIZE=100000
 export SAVEHIST=100000
-export HISTFILE=$ZDOTDIR/.zhistory
+export HISTFILE=$ZDOTDIR/zhistory
 
 # load LS_COLORS
 eval "$(dircolors -b)"
@@ -125,7 +125,7 @@ setopt pushd_minus
 setopt pushd_to_home
 
 # use the DIRSTACK in all sessions
-DIRSTACKFILE=$ZDOTDIR/.zdirs
+DIRSTACKFILE=$ZDOTDIR/zdirs
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
 	dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
 	[[ -d $dirstack[1] ]] && cd $dirstack[1] && cd $OLDPWD

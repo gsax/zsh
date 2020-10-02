@@ -11,7 +11,8 @@ fi
 PATH="${PATH}"; export PATH
 
 # Set ZDOTDIR
-ZDOTDIR=~/.zsh; export ZDOTDIR
+#ZDOTDIR=~/.zsh; export ZDOTDIR
+ZDOTDIR=~/.config/zsh; export ZDOTDIR
 
 # Set the default theme for gtk-3
 export GTK_THEME='Vertex-Dark'
