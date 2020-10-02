@@ -82,11 +82,18 @@ gcal() {
 }
 
 # use always underscores instead of spaces with youtube-dl
-#alias youtube-dl='youtube-dl --restrict-filenames'
+youtube-dl () {
+	command youtube-dl --restrict-filenames "$@"
+}
+
+# stream audio only
+Stream () {
+	command youtube-dl -o - "$@" | mpv --no-video -
+}
 
 # download videos with codecs supported by my TV
 TV-dl() {
-  command youtube-dl -f 'bestvideo[ext=mp4][fps <=30]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$@"
+  command youtube-dl --restrict-filenames -f 'bestvideo[ext=mp4][fps <=30]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$@"
 }
 
 # unpack
