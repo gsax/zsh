@@ -22,6 +22,15 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -s $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]] &&
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Nobody need flow control anymore. Troublesome feature.
+setopt noflowcontrol
+
+# Fix for tmux on linux.
+case "$(uname -o)" in
+    'GNU/Linux')
+        export EVENT_NOEPOLL=1
+    ;;
+esac
 
 # Aliases and Functions
 
