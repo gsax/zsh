@@ -54,9 +54,6 @@ iotop() {
 hddtemp() {
 	command sudo hddtemp "$@"
 }
-nethogs() {
-	command sudo nethogs "$@"
-}
 pktstat() {
 	command sudo pktstat "$@"
 }
