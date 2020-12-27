@@ -2,9 +2,9 @@
 typeset -U path
 path=(
 	/home/gsx/.local/bin
-	/home/gsx/.ghcup/bin
 	/home/gsx/.go/bin
 	/home/gsx/Appz/texlive/2020/bin/x86_64-linux
+	/usr/local/bin
 	/usr/bin/core_perl
 	/usr/bin/site_perl
 	/usr/bin/vendor_perl
