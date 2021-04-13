@@ -14,6 +14,11 @@ PATH="${PATH}"; export PATH
 #ZDOTDIR=~/.zsh; export ZDOTDIR
 ZDOTDIR=~/.config/zsh; export ZDOTDIR
 
+# set pager, editor, visual and browser variables
+PAGER=/usr/bin/less; export PAGER
+EDITOR=/usr/bin/vi; export EDITOR
+VISUAL=/usr/bin/vi; export VISUAL
+
 # Set the default theme for gtk-3
 export GTK_THEME='Vertex-Dark'
 
