@@ -43,8 +43,11 @@ alias poweroff='sudo poweroff'
 alias reboot='sudo reboot'
 
 # run nmap as root
-nmap() {
-	command sudo nmap "$@"
+#nmap() {
+#	command sudo nmap "$@"
+#}
+zenmap() {
+	command sudo zenmap "$@"
 }
 
 # run some monitoring tools as root
@@ -56,9 +59,6 @@ hddtemp() {
 }
 pktstat() {
 	command sudo pktstat "$@"
-}
-wavemon() {
-	command sudo wavemon "$@"
 }
 
 # ls aliases
@@ -100,11 +100,6 @@ Peab () {
 # digital peaclock
 Pead () {
 	command peaclock --config-dir ~/.config/peaclock -u ~/.config/peaclock/digital.conf "$@"
-}
-
-# use always underscores instead of spaces with youtube-dl
-youtube-dl () {
-	command youtube-dl --restrict-filenames "$@"
 }
 
 # download videos with codecs supported by my TV

@@ -26,6 +26,11 @@ key[PageDown]="$terminfo[knp]"
 [[ -n "$key[Right]"     ]] && bindkey -- "$key[Right]"     forward-char
 [[ -n "$key[PageUp]"    ]] && bindkey -- "$key[PageUp]"    history-beginning-search-backward
 [[ -n "$key[PageDown]"  ]] && bindkey -- "$key[PageDown]"  history-beginning-search-forward
+# Rebind Alt+p and Alt+n
+#[[ -n "^[P"         ]] && bindkey -r "^[P" && bindkey -- "^[P"         history-beginning-search-backward
+#[[ -n "^[N"         ]] && bindkey -r "^[N" && bindkey -- "^[N"         history-beginning-search-forward
+[[ -n "^[p"         ]] && bindkey -r "^[p" && bindkey -- "^[p"         history-beginning-search-backward
+[[ -n "^[n"         ]] && bindkey -r "^[n" && bindkey -- "^[n"         history-beginning-search-forward
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
