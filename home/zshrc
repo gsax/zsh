@@ -46,9 +46,9 @@ alias reboot='sudo reboot'
 #nmap() {
 #	command sudo nmap "$@"
 #}
-zenmap() {
-	command sudo zenmap "$@"
-}
+#zenmap() {
+#	command sudo zenmap "$@"
+#}
 
 # run some monitoring tools as root
 iotop() {
