@@ -20,7 +20,7 @@ EDITOR=/usr/bin/vi; export EDITOR
 VISUAL=/usr/bin/vi; export VISUAL
 
 # Set the default theme for gtk-3
-export GTK_THEME='Vertex-Dark'
+export GTK_THEME='Dracula'
 
 # Set the default theme for qt / kvantum
 export QT_STYLE_OVERRIDE='kvantum-dark'
