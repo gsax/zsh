@@ -3,7 +3,6 @@ typeset -U path
 path=(
 	/home/gsx/.local/bin
 	/home/gsx/.go/bin
-	/home/gsx/Appz/texlive/2020/bin/x86_64-linux
 	/usr/local/bin
 	/usr/bin/core_perl
 	/usr/bin/site_perl
@@ -15,7 +14,6 @@ path=(
 typeset -U path
 manpath=(
 	/home/gsx/.local/share/man
-	/home/gsx/Appz/texlive/2020/texmf-dist/doc/man
 	$manpath
 )
 
