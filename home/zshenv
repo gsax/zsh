@@ -30,3 +30,6 @@ VIMCONFIG=~/.config/nvim/config; export VIMCONFIG
 
 # set $GOPATH
 GOPATH=~/.go; export GOPATH
+
+# set to avoid empty windows in java applications
+_JAVA_AWT_WM_NONREPARENTING=1; export _JAVA_AWT_WM_NONREPARENTING
