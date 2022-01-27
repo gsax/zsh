@@ -148,36 +148,3 @@ unpack() {
 	done
 	return "$e"
 }
-
-##########
-# PYTHON #
-##########
-
-# show outdated packages
-alias PipListOutdated='pip list --outdated --format=freeze --user | xargs -n1'
-
-# update all manually installed packages
-alias PipUpdate='pip list --outdated --format=freeze --user | cut -d = -f 1 | xargs -n1 pip install -U --user'
-
-# source virtual environment
-Venv() {
-	if [[ -n "$@" ]]; then
-		source "$@"/venv/bin/activate
-	else
-		source ./venv/bin/activate
-	fi
-}
-
-
-# create virtual environment
-Vcenv() {
-	if [[ -n "$@" ]]; then
-		mkdir "$@"
-		cd "$@"
-		python -m venv venv
-		source ./venv/bin/activate
-	else
-		python -m venv venv
-		source ./venv/bin/activate
-	fi
-}
