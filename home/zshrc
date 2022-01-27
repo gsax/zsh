@@ -7,7 +7,7 @@ source /usr/share/fzf/completion.zsh 2> /dev/null
 # key-bindings
 [[ -s /usr/share/fzf/key-bindings.zsh ]] &&
 source /usr/share/fzf/key-bindings.zsh
-# use rg instead of find
+# use fd instead of find
 [[ -x $(which fd) ]] &&
 FZF_DEFAULT_COMMAND='fd --type f'; export FZF_DEFAULT_COMMAND
 
