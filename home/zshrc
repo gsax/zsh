@@ -107,6 +107,10 @@ TV-dl() {
   command youtube-dl --restrict-filenames -f 'bestvideo[ext=mp4][fps <=30]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$@"
 }
 
+Kink-dl() {
+	command aria2c --auto-file-renaming=false "$@"
+}
+
 # unpack
 unpack() {
 	setopt localoptions
@@ -177,20 +181,3 @@ Vcenv() {
 		source ./venv/bin/activate
 	fi
 }
-
-######
-# GO #
-######
-
-# install required packages
-alias GoInstall='
-	go get github.com/zserge/zs \
-	github.com/opennota/findimagedupes'
-
-# show all packages installed in the users home
-alias GoList='cd ~/.go/ && go list ./... && cd -'
-
-# update all manually installed packages
-alias GoUpdate='
-	go get -u github.com/zserge/zs \
-	github.com/opennota/findimagedupes'
