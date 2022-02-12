@@ -23,10 +23,8 @@ EDITOR=/usr/bin/vi; export EDITOR
 VISUAL=/usr/bin/vi; export VISUAL
 BROWSER=/usr/bin/firefox; export BROWSER
 
-# set path for neovim bundles
-VIMBUNDLE=~/.local/share/nvim/bundle; export VIMBUNDLE
 # set path for neovim configs
-VIMCONFIG=~/.config/nvim/config; export VIMCONFIG
+NVIMHOME=~/.config/nvim; export NVIMHOME
 
 # set $GOPATH
 GOPATH=~/.go; export GOPATH
