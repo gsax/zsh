@@ -16,11 +16,11 @@ FZF_DEFAULT_COMMAND='fd --type f'; export FZF_DEFAULT_COMMAND
 eval "$(stack --bash-completion-script stack)"
 
 # zsh autosuggestions
-[[ -s $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]] &&
-source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -s /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zsh syntax highlighting
-[[ -s $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]] &&
-source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -s /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]] &&
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # Nobody need flow control anymore. Troublesome feature.
 setopt noflowcontrol
