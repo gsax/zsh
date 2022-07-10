@@ -74,10 +74,8 @@ GitHub() {
 
 # mosh connections to my uberspace webspaces
 alias uber-gsx='mosh -p 41400 gsx'
-alias uber-gsxbms='mosh -p 41420 gsxbms'
 alias uber-gsxcloud='mosh -p 41240 gsxcloud'
-alias uber-gsxmath='mosh -p 41100 gsxmath'
-alias uber-gsxwiki='mosh -p 45800 gsxwiki'
+alias uber-gsxtiddlywiki='mosh -p 43380 gsxtiddlywiki'
 alias uber-analspinach='mosh -p 44460 analspinach'
 
 # cal start week with mondays
