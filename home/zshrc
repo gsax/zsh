@@ -85,6 +85,17 @@ gcal() {
 	command gcal --iso-week-number=yes -s1 -qDE_BY -H '\e[32m:\e[0m:\e[34m:\e[0m' "$@"
 }
 
+# don't show the banner for ffmpeg stuff
+ffmpeg () {
+	command ffmpeg -hide_banner "$@"
+}
+ffplay () {
+	command ffplay -hide_banner "$@"
+}
+ffprobe () {
+	command ffprobe -hide_banner "$@"
+}
+
 # use xdg_config_dir for peaclock
 peaclock () {
 	command peaclock --config-dir ~/.config/peaclock "$@"
