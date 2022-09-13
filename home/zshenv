@@ -23,8 +23,8 @@ EDITOR=/usr/bin/vi; export EDITOR
 VISUAL=/usr/bin/vi; export VISUAL
 BROWSER=/usr/bin/firefox; export BROWSER
 
-# set path for neovim configs
-NVIMHOME=~/.config/nvim; export NVIMHOME
+# eport the hostname env variable
+export HOST
 
 # set $GOPATH
 GOPATH=~/.go; export GOPATH
