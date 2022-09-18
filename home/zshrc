@@ -78,6 +78,15 @@ alias uber-gsxcloud='mosh -p 41240 gsxcloud'
 alias uber-gsxtiddlywiki='mosh -p 43380 gsxtiddlywiki'
 alias uber-analspinach='mosh -p 44460 analspinach'
 
+# get help from cht.sh
+cht () {
+	command curl https://cht.sh/"$@" | less -R
+}
+
+# shuffle play folders with mpv
+Shuffle (){
+	command fd -tf . "$@" | sort | uniq | shuf | rg -v '.*\.sh$' | xargs -d '\n' mpv
+}
 # cal start week with mondays
 alias cal='cal -m'
 # gcal
